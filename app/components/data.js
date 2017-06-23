@@ -2,42 +2,32 @@
 var axios = require('axios');
 
 // New York Times API
-var API = "dd01643961c2c43b29684c8f792a5af7";
+var API = "AIzaSyC585Jhr1eNvtH19TWMycNAZgthBaciGvA";
+
 
 // Helper Functions
 var helpers = {
 
-	query: function(location, foodtype){
+	query: function(location){
 
 		//Figure out the geolocation
-		var URL = "https://developers.zomato.com/" + API;
+		var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" + location + "&key=" + API;
 
-		return axios.get(URL)
+		return axios.get(queryURL)
 			.then(function(response){
 
-				var restaurants = [];
-				var results = response.data.response.docs;
-				var num = 0;
-
-				//Gets first 5 articles that have all 3 components
-				for(var i = 0; i < results.length; i++){
-
-					if(num > 0) {
-						return restaurants;
-					}
-
-					if(results[num].location && results[num].name) {
-						restaurants.push(results[num]);
-						num++;
-					}
-				}
-
-				return restaurants;
+				console.log(response.data.results);
+				return response.data.results;
+			// for (var i=0; i<response.data.results.length; i++) {
+			// 	console.log(response[i]);
+			// }
 		})
 
 	}
 
 }
+
+
 
 
 // We export the helpers function (which contains getGithubInfo)

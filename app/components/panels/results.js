@@ -6,25 +6,28 @@ var Results = React.createClass({
 
   getInitialState: function(){
     return {
-      title: "",
-      date: "",
-      url: "",
       results: []
     }
   },
 
-  // When a user clicks save article
-  clickToSave: function(result){
-    this.props.saveArticle(result.headline.main, result.pub_date, result.web_url);
-  },
+  // // When a user clicks save article
+  // clickToSave: function(result){
+  //   this.props.saveArticle(result.headline.main, result.pub_date, result.web_url);
+  // },
 
   componentWillReceiveProps: function(props){
     var that = this;
     var myResults = props.results.map(function(search, i){
       var click = that.clickToSave.bind(that, search);
       return <div className="list-group-item" key={i}>
-      <a href={search.web_url} target="_blank">{search.headline.main}</a> {search.pub_date} <button className="btn btn-success" onClick={click}>Save Article</button></div>
+      <h1>hi</h1>
+      </div>
+    // <a href={search.web_url} target="_blank">{search.headline.main}</a> {search.pub_date} <button className="btn btn-success" onClick={click}>Save Article</button></div>
     });
+    
+    // myResults.push(props.results);
+    // console.log(props.results);
+    // alert(props.results);
 
     this.setState({results: myResults});
   },
