@@ -2,7 +2,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
 var RestaurantSchema = new Schema({
   restaurantName: {
     type: String,
@@ -13,10 +12,9 @@ var RestaurantSchema = new Schema({
     default: "Evanston, Illinois",
     required: "Location is Required"
   },
-  url: {
-    type: String,
-    required: true,
-    unique: true
+
+  comment: {
+    type: String, 
   }
 });
 

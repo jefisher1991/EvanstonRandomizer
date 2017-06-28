@@ -7,10 +7,10 @@ var Saved = require('./panels/Saved');
 
 
 var helpers = require('./data.js');
+
 // This is the main component.
 var Main = React.createClass({
 
-	// Here we set a generic state associated with the number of clicks
 	getInitialState: function(){
 		return {
 			location: "",
@@ -110,10 +110,8 @@ var Main = React.createClass({
 					<Results results={this.state.results}/>
 				</div>
 
-			
-
-			</div>
-		)
+			</div> 
+			)
 	}
 });
 

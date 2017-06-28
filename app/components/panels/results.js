@@ -10,7 +10,7 @@ var Results = React.createClass({
     }
   },
 
-  // // When a user clicks save article
+  
   // clickToSave: function(result){
   //   this.props.saveArticle(result.headline.main, result.pub_date, result.web_url);
   // },

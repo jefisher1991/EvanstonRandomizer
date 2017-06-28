@@ -37,7 +37,7 @@ var Form = React.createClass({
           <h2 className="panel-title text-center">SEARCH RESTAURANTS</h2>
         </div>
         <div className="panel-body text-center">
-            <form>
+            <form >
               <div className="form-group">
                 <h5 className="">Location (Required)</h5>
                 <input type="text" className="form-control text-center" id="location" onChange= {this.handleChange} required/>
@@ -45,10 +45,10 @@ var Form = React.createClass({
             
         
               <button className="btn btn-primary" onClick={this.handleClick}>Play Restaurant Roulette!! </button>
-
             </form>
         </div>
       </div>
+
     )
   } 
 });

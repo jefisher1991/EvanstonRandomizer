@@ -26,6 +26,7 @@ app.use(express.static('./public'));
 
 mongoose.connect('mongodb://localhost/restaurants');
 
+var test = require('./models/restaurant.js'); 
 
 var db = mongoose.connection;
 
@@ -37,9 +38,26 @@ db.once('open', function () {
   console.log('Mongoose connection successful.');
 });
 
+
+
 app.get('/', function(req, res){
   res.sendFile('./public/index.html');
 })
+
+app.post('/submit', function(req, res){
+  var content = test(req.body); 
+    content.save(function(error, doc) {
+    // Send any errors to the browser
+    if (error) {
+      res.send(error);
+    }
+    // Otherwise, send the new doc to the browser
+    else {
+      res.send(doc);
+    }
+  });
+});
+
 
 app.get('/api/saved', function(req, res) {
 
@@ -55,35 +73,6 @@ app.get('/api/saved', function(req, res) {
     })
 });
 
-// Help//
-
-app.post('/api/saved', function(req, res){
-
-  var newArticle = new Article({
-    title: req.body.title,
-    date: req.body.date,
-    url: req.body.url
-  });
-
-  newArticle.save(function(err, doc){
-    if(err){
-      console.log(err);
-      res.send(err);
-    } else {
-      res.json(doc);
-    }
-  });
-
-});
-
-app.delete('/api/saved/:id', function(req, res){
-
-  Article.find({'_id': req.params.id}).remove()
-    .exec(function(err, doc) {
-      res.send(doc);
-  });
-
-});
 
 
 

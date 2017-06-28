@@ -22203,12 +22203,12 @@
 	var Saved = __webpack_require__(213);
 
 	var helpers = __webpack_require__(214);
+	var stylesheet = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../public/style.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())
 	// This is the main component.
-	var Main = React.createClass({
+	);var Main = React.createClass({
 		displayName: 'Main',
 
 
-		// Here we set a generic state associated with the number of clicks
 		getInitialState: function getInitialState() {
 			return {
 				location: "",
@@ -23850,10 +23850,8 @@
 
 	"use strict";
 
-	// Include React
 	var React = __webpack_require__(1);
 
-	// Component creation
 	var Form = React.createClass({
 	  displayName: "Form",
 
@@ -23864,23 +23862,18 @@
 	    };
 	  },
 
-	  // This function will respond to the user input
 	  handleChange: function handleChange(event) {
 
-	    // Here we create syntax to capture any change in text to the query terms (pre-search).
 	    var newState = {};
 	    newState[event.target.id] = event.target.value;
 	    this.setState(newState);
 	  },
 
-	  // When a user submits...
 	  handleClick: function handleClick() {
 
-	    // Set the parent to have the search term
 	    this.props.setTerm(this.state.location);
 	  },
 
-	  // Here we render the function
 	  render: function render() {
 
 	    return React.createElement(
@@ -23919,13 +23912,9 @@
 	        )
 	      )
 	    );
-	  } // <div className="form-group">
-	  //   <h5 className="">Food Type (Optional) </h5>
-	  //   <input type="text" className="form-control text-center" id="foodType" onChange= {this.handleChange} />
-	  // </div>
+	  }
 	});
 
-	// Export the component back for use in other files
 	module.exports = Form;
 
 /***/ }),
@@ -23948,7 +23937,6 @@
 	    };
 	  },
 
-	  // // When a user clicks save article
 	  // clickToSave: function(result){
 	  //   this.props.saveArticle(result.headline.main, result.pub_date, result.web_url);
 	  // },
@@ -24057,24 +24045,26 @@
 
 	"use strict";
 
-	// Include the axios package for performing HTTP requests (promise based alternative to request)
 	var axios = __webpack_require__(185);
 
-	// New York Times API
 	var API = "AIzaSyC585Jhr1eNvtH19TWMycNAZgthBaciGvA";
 
 	// Helper Functions
 	var helpers = {
 
 		query: function query(location) {
-
+			var location = "Evanston, Illinois, USA";
 			//Figure out the geolocation
 			var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" + location + "&key=" + API;
 
 			return axios.get(queryURL).then(function (response) {
+				var apiRestaurants = [];
+				var results = response.data.results;
 
-				console.log(response.data.results);
-				return response.data.results;
+				apiRestaurants.push(results);
+
+				console.log(apiRestaurants);
+				return apiRestaurants;
 				// for (var i=0; i<response.data.results.length; i++) {
 				// 	console.log(response[i]);
 				// }
