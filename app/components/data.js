@@ -3,31 +3,29 @@ var axios = require('axios');
 
 
 var API = "AIzaSyC585Jhr1eNvtH19TWMycNAZgthBaciGvA";
+var evanston = new google.maps.LatLng(42.0451, -87.6877);
+
+var map = new google.maps.Map(document.getElementById('app'), {
+  center: evanston,
+  zoom: 15
+});
+
+const service = new google.maps.places.PlacesService(map);
 
 
 
 // Helper Functions
 var helpers = {
 
-	query: function(location){
-var location = "Evanston, Illinois, USA"
-		//Figure out the geolocation
-		var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" + location + "&key=" + API;
+	query: function(location, callback){
+		// remember to swap location param with location key in object!
+		const request =  {
+		    location: evanston,
+		    radius: '1000',
+		    query: 'restaurant'
+ 		};
 
-		return axios.get(queryURL)
-			.then(function(response){
-				var apiRestaurants =[];
-				var results = (response.data.results)
-
-				apiRestaurants.push(results); 
-
-				console.log(apiRestaurants);
-				return apiRestaurants; 
-			// for (var i=0; i<response.data.results.length; i++) {
-			// 	console.log(response[i]);
-			// }
-		})
-
+		service.textSearch(request, callback);
 	}
 
 }

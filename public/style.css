@@ -1,3 +1,6 @@
 body {
-	background-image: url(BackgroundRoulette.jpg);
+	background-image: url('./RouletteCropped.jpg');
+	background-size: 100%; 
+	background-repeat: no-repeat; 
+	color: green;
 }

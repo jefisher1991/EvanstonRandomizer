@@ -1,6 +1,7 @@
 
 var React = require('react');
 
+var helpers = require('../data.js')
 
 var Form = React.createClass({
 
@@ -9,22 +10,31 @@ var Form = React.createClass({
       location: ""
     }
   },
-
   
   handleChange: function(event){
 
-
-      var newState = {};
-      newState[event.target.id] = event.target.value;
-      this.setState(newState);
+    this.setState({location: event.target.value});
 
   },
 
  
-  handleClick: function(){
+  handleClick: function(e){
+    e.preventDefault();
 
-    this.props.setTerm(this.state.location);
+    helpers.query(this.state.location, function(response) {
+      console.log(response);
+      // var apiRestaurants =[];
+      // var results = (response.data.results)
 
+      // apiRestaurants.push(results); 
+
+      // console.log(apiRestaurants);
+      // this.props.onResultChange(response);
+      this.props.onResultChange(response);
+      // for (var i=0; i<response.data.results.length; i++) {
+      //  console.log(response[i]);
+      // }
+    }.bind(this)) 
   },
 
   

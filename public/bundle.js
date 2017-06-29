@@ -22199,19 +22199,19 @@
 	var React = __webpack_require__(1);
 
 	var Form = __webpack_require__(211);
-	var Results = __webpack_require__(212);
-	var Saved = __webpack_require__(213);
+	var Results = __webpack_require__(213);
+	var Saved = __webpack_require__(214);
 
-	var helpers = __webpack_require__(214);
-	var stylesheet = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../public/style.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())
+	var helpers = __webpack_require__(212);
+
 	// This is the main component.
-	);var Main = React.createClass({
+	var Main = React.createClass({
 		displayName: 'Main',
 
 
 		getInitialState: function getInitialState() {
 			return {
-				location: "",
+				// location: "",
 				results: []
 				// topic: "",
 				// startYear: "",
@@ -22221,11 +22221,8 @@
 			};
 		},
 
-		// We use this function to allow panels to update the parent with searchTerms.
-		setTerm: function setTerm(location) {
-			this.setState({
-				location: location
-			});
+		onResultChange: function onResultChange(results) {
+			this.setState({ results: results });
 		},
 
 		// saveArticle: function(title, date, url){
@@ -22257,29 +22254,6 @@
 		// 		}.bind(this));
 		// },
 
-		// If the component updates we'll run this code
-		componentDidUpdate: function componentDidUpdate(previousProperties, previousState) {
-			// if(previousState.topic != this.state.topic){
-			// 	helpers.query(this.state.location)
-			// 		.then(function(data){
-			// 			console.log(data);
-			// 			if (data != this.state.results)
-			// 			{
-			// 				this.setState({
-			// 					results: data
-			// 				})
-			// 			}
-			// 		}.bind(this))
-			// }
-			console.log(this.state.location);
-
-			helpers.query(this.state.location).then(function (data) {
-				this.setState({
-					results: data
-				});
-			}.bind(this));
-		},
-
 		// componentDidMount: function(){
 		// 	axios.get('/api/saved')
 		// 		.then(function(response){
@@ -22302,7 +22276,7 @@
 				React.createElement(
 					'div',
 					{ className: 'row' },
-					React.createElement(Form, { setTerm: this.setTerm })
+					React.createElement(Form, { onResultChange: this.onResultChange })
 				),
 				React.createElement(
 					'div',
@@ -23848,12 +23822,14 @@
 /* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var React = __webpack_require__(1);
 
+	var helpers = __webpack_require__(212);
+
 	var Form = React.createClass({
-	  displayName: "Form",
+	  displayName: 'Form',
 
 
 	  getInitialState: function getInitialState() {
@@ -23864,50 +23840,62 @@
 
 	  handleChange: function handleChange(event) {
 
-	    var newState = {};
-	    newState[event.target.id] = event.target.value;
-	    this.setState(newState);
+	    this.setState({ location: event.target.value });
 	  },
 
-	  handleClick: function handleClick() {
+	  handleClick: function handleClick(e) {
+	    e.preventDefault();
 
-	    this.props.setTerm(this.state.location);
+	    helpers.query(this.state.location, function (response) {
+	      console.log(response);
+	      // var apiRestaurants =[];
+	      // var results = (response.data.results)
+
+	      // apiRestaurants.push(results); 
+
+	      // console.log(apiRestaurants);
+	      // this.props.onResultChange(response);
+	      this.props.onResultChange(response);
+	      // for (var i=0; i<response.data.results.length; i++) {
+	      //  console.log(response[i]);
+	      // }
+	    }.bind(this));
 	  },
 
 	  render: function render() {
 
 	    return React.createElement(
-	      "div",
-	      { className: "panel panel-primary" },
+	      'div',
+	      { className: 'panel panel-primary' },
 	      React.createElement(
-	        "div",
-	        { className: "panel-heading" },
+	        'div',
+	        { className: 'panel-heading' },
 	        React.createElement(
-	          "h2",
-	          { className: "panel-title text-center" },
-	          "SEARCH RESTAURANTS"
+	          'h2',
+	          { className: 'panel-title text-center' },
+	          'SEARCH RESTAURANTS'
 	        )
 	      ),
 	      React.createElement(
-	        "div",
-	        { className: "panel-body text-center" },
+	        'div',
+	        { className: 'panel-body text-center' },
 	        React.createElement(
-	          "form",
+	          'form',
 	          null,
 	          React.createElement(
-	            "div",
-	            { className: "form-group" },
+	            'div',
+	            { className: 'form-group' },
 	            React.createElement(
-	              "h5",
-	              { className: "" },
-	              "Location (Required)"
+	              'h5',
+	              { className: '' },
+	              'Location (Required)'
 	            ),
-	            React.createElement("input", { type: "text", className: "form-control text-center", id: "location", onChange: this.handleChange, required: true })
+	            React.createElement('input', { type: 'text', className: 'form-control text-center', id: 'location', onChange: this.handleChange, required: true })
 	          ),
 	          React.createElement(
-	            "button",
-	            { className: "btn btn-primary", onClick: this.handleClick },
-	            "Play Restaurant Roulette!! "
+	            'button',
+	            { className: 'btn btn-primary', onClick: this.handleClick },
+	            'Play Restaurant Roulette!! '
 	          )
 	        )
 	      )
@@ -23919,6 +23907,41 @@
 
 /***/ }),
 /* 212 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var axios = __webpack_require__(185);
+
+	var API = "AIzaSyC585Jhr1eNvtH19TWMycNAZgthBaciGvA";
+	var evanston = new google.maps.LatLng(42.0451, -87.6877);
+
+	var map = new google.maps.Map(document.getElementById('app'), {
+		center: evanston,
+		zoom: 15
+	});
+
+	var service = new google.maps.places.PlacesService(map);
+
+	// Helper Functions
+	var helpers = {
+
+		query: function query(location, callback) {
+			// remember to swap location param with location key in object!
+			var request = {
+				location: evanston,
+				radius: '1000',
+				query: 'restaurant'
+			};
+
+			service.textSearch(request, callback);
+		}
+
+		// We export the helpers function (which contains getGithubInfo)
+	};module.exports = helpers;
+
+/***/ }),
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -23941,29 +23964,6 @@
 	  //   this.props.saveArticle(result.headline.main, result.pub_date, result.web_url);
 	  // },
 
-	  componentWillReceiveProps: function componentWillReceiveProps(props) {
-	    var that = this;
-	    var myResults = props.results.map(function (search, i) {
-	      var click = that.clickToSave.bind(that, search);
-	      return React.createElement(
-	        "div",
-	        { className: "list-group-item", key: i },
-	        React.createElement(
-	          "h1",
-	          null,
-	          "hi"
-	        )
-	      );
-	      // <a href={search.web_url} target="_blank">{search.headline.main}</a> {search.pub_date} <button className="btn btn-success" onClick={click}>Save Article</button></div>
-	    });
-
-	    // myResults.push(props.results);
-	    // console.log(props.results);
-	    // alert(props.results);
-
-	    this.setState({ results: myResults });
-	  },
-
 	  // Here we render the function
 	  render: function render() {
 	    return React.createElement(
@@ -23981,7 +23981,7 @@
 	      React.createElement(
 	        "div",
 	        { className: "panel-body" },
-	        this.state.results
+	        JSON.stringify(this.props.results)
 	      )
 	    );
 	  }
@@ -23991,7 +23991,7 @@
 	module.exports = Results;
 
 /***/ }),
-/* 213 */
+/* 214 */
 /***/ (function(module, exports) {
 
 	// var React = require('react');
@@ -24039,40 +24039,6 @@
 	// module.exports = Saved;
 	"use strict";
 
-/***/ }),
-/* 214 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var axios = __webpack_require__(185);
-
-	var API = "AIzaSyC585Jhr1eNvtH19TWMycNAZgthBaciGvA";
-
-	// Helper Functions
-	var helpers = {
-
-		query: function query(location) {
-			var location = "Evanston, Illinois, USA";
-			//Figure out the geolocation
-			var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" + location + "&key=" + API;
-
-			return axios.get(queryURL).then(function (response) {
-				var apiRestaurants = [];
-				var results = response.data.results;
-
-				apiRestaurants.push(results);
-
-				console.log(apiRestaurants);
-				return apiRestaurants;
-				// for (var i=0; i<response.data.results.length; i++) {
-				// 	console.log(response[i]);
-				// }
-			});
-		}
-
-		// We export the helpers function (which contains getGithubInfo)
-	};module.exports = helpers;
-
 /***/ })
 /******/ ]);
+//# sourceMappingURL=bundle.js.map

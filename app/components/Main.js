@@ -13,7 +13,7 @@ var Main = React.createClass({
 
 	getInitialState: function(){
 		return {
-			location: "",
+			// location: "",
 			results: []
 			// topic: "",
 			// startYear: "",
@@ -23,11 +23,8 @@ var Main = React.createClass({
 		}
 	},
 
-	// We use this function to allow panels to update the parent with searchTerms.
-	setTerm: function(location){
-		this.setState({
-			location: location
-		})
+	onResultChange: function(results) {
+		this.setState({results: results});
 	},
 
 	// saveArticle: function(title, date, url){
@@ -59,33 +56,6 @@ var Main = React.createClass({
 	// 		}.bind(this));
 	// },
 
-	// If the component updates we'll run this code
-	componentDidUpdate: function(previousProperties, previousState){
-		// if(previousState.topic != this.state.topic){
-		// 	helpers.query(this.state.location)
-		// 		.then(function(data){
-		// 			console.log(data);
-		// 			if (data != this.state.results)
-		// 			{
-		// 				this.setState({
-		// 					results: data
-		// 				})
-		// 			}
-		// 		}.bind(this))
-		// }
-		console.log(this.state.location);
-		
-			helpers.query(this.state.location)
-				.then(function(data){					
-					this.setState({
-						results: data
-					})
-					
-				}.bind(this))
-		
-
-	},
-
 	// componentDidMount: function(){
 	// 	axios.get('/api/saved')
 	// 		.then(function(response){
@@ -103,7 +73,7 @@ var Main = React.createClass({
 
 					<h1 className="text-center"> Restaurant Randomizer</h1>
 				<div className="row">
-					<Form setTerm={this.setTerm}/>
+					<Form onResultChange={this.onResultChange} />
 				</div>
 
 				<div className="row">
