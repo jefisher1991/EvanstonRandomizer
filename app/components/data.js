@@ -1,13 +1,12 @@
-
 var axios = require('axios');
 
 
 var API = "AIzaSyC585Jhr1eNvtH19TWMycNAZgthBaciGvA";
-var evanston = new google.maps.LatLng(42.0451, -87.6877);
+var evanston = new google.maps.LatLng(42.0483, -87.6821);
 
 var map = new google.maps.Map(document.getElementById('app'), {
   center: evanston,
-  zoom: 15
+  zoom: 5
 });
 
 const service = new google.maps.places.PlacesService(map);
@@ -21,7 +20,7 @@ var helpers = {
 		// remember to swap location param with location key in object!
 		const request =  {
 		    location: evanston,
-		    radius: '1000',
+		    radius: '450',
 		    query: 'restaurant'
  		};
 

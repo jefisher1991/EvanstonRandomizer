@@ -23,7 +23,7 @@ var Results = React.createClass({
 
       // Each article thus reperesents a list group item with a known index
       return (
-        <div key={index}>
+        <div key={0}>
           <li className="list-group-item">
               <ul>
                 <span>{restaurant.name}</span>
@@ -48,7 +48,6 @@ var Results = React.createClass({
                   we can pass in an article as an argument
                   //when you have a button do onclick and bring ina function and this.handleClick
                   //assigns the function to this button 
-
                   //handle click is receiving the article 
                 */}
                 <button className="btn btn-primary" onClick={() => this.handleClick(restaurant)}>Save</button>
