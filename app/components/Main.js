@@ -23,8 +23,8 @@ var Main = React.createClass({
 		}
 	},
 
-	onResultChange: function(results) {
-		this.setState({results: results});
+	onResultChange: function(randomizeRestaurants) {
+		this.setState({results: randomizeRestaurants});
 	},
 
 	// saveArticle: function(title, date, url){

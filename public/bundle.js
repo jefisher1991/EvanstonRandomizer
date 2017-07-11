@@ -22221,8 +22221,8 @@
 			};
 		},
 
-		onResultChange: function onResultChange(results) {
-			this.setState({ results: results });
+		onResultChange: function onResultChange(randomizeRestaurants) {
+			this.setState({ results: randomizeRestaurants });
 		},
 
 		// saveArticle: function(title, date, url){
@@ -23838,27 +23838,15 @@
 	    };
 	  },
 
-	  handleChange: function handleChange(event) {
-
-	    this.setState({ location: event.target.value });
-	  },
-
 	  handleClick: function handleClick(e) {
 	    e.preventDefault();
-
 	    helpers.query(this.state.location, function (response) {
 	      console.log(response);
-	      // var apiRestaurants =[];
-	      // var results = (response.data.results)
 
-	      // apiRestaurants.push(results); 
+	      var randomizeRestaurants = [response[Math.floor(Math.floor(Math.random() * response.length))]];
+	      console.log(randomizeRestaurants);
 
-	      // console.log(apiRestaurants);
-	      // this.props.onResultChange(response);
-	      this.props.onResultChange(response);
-	      // for (var i=0; i<response.data.results.length; i++) {
-	      //  console.log(response[i]);
-	      // }
+	      this.props.onResultChange(randomizeRestaurants);
 	    }.bind(this));
 	  },
 
@@ -23882,16 +23870,6 @@
 	        React.createElement(
 	          'form',
 	          null,
-	          React.createElement(
-	            'div',
-	            { className: 'form-group' },
-	            React.createElement(
-	              'h5',
-	              { className: '' },
-	              'Location (Required)'
-	            ),
-	            React.createElement('input', { type: 'text', className: 'form-control text-center', id: 'location', onChange: this.handleChange, required: true })
-	          ),
 	          React.createElement(
 	            'button',
 	            { className: 'btn btn-primary', onClick: this.handleClick },
