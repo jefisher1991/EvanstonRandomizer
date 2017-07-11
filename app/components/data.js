@@ -25,7 +25,17 @@ var helpers = {
  		};
 
 		service.textSearch(request, callback);
-	}
+	},
+
+	postSaved: function(name, formatted_address) {
+    	var newRestaurant = { restaurantName: name, location: formatted_address};
+    	return axios.post("/api/saved", newRestaurant)
+      .then(function(response) {
+        console.log("axios results", response.data._id);
+        return response.data._id;
+      });
+  	}
+
 
 }
 

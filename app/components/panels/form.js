@@ -35,16 +35,13 @@ var Form = React.createClass({
 
     return(
 
-      <div className="panel panel-primary">
-        <div className="panel-heading">
-          <h2 className="panel-title text-center">SEARCH RESTAURANTS</h2>
-        </div>
+   
         <div className="panel-body text-center">
             <form >
-              <button className="btn btn-primary" onClick={this.handleClick}>Play Restaurant Roulette!! </button>
+              <button className="spinTheWheel btn btn-primary" onClick={this.handleClick}> Spin the Wheel </button>
             </form>
         </div>
-      </div>
+     
 
     )
   } 

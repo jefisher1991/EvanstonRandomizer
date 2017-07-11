@@ -1,6 +1,10 @@
 // Include React
 var React = require('react');
 
+//require helpers
+
+var helpers = require("../data");
+
 // Component creation
 var Results = React.createClass({
 
@@ -18,7 +22,6 @@ var Results = React.createClass({
 //index is the postiion of the array that you are iterating through 
 
   renderRestaurants: function() {
-    console.log('this was called')
     return this.props.results.map(function(restaurant, index) {
 
       // Each article thus reperesents a list group item with a known index
@@ -26,34 +29,29 @@ var Results = React.createClass({
         <div key={0}>
           <li className="list-group-item">
               <ul>
-                <span>{restaurant.name}</span>
-                <span>{restaurant.formatted_address}</span>
-                 <span>{restaurant.icon}</span>
-                 <span>{restaurant.opening_hours.open_now}</span>
-                 <span>{restaurant.rating}</span>
-                 <span>{restaurant.price_level}</span>
+                <span className="restaurantNameHeader">Name: 
+                <p className="restaurantName"> {restaurant.name}</p>
+                </span>
+
+                <span className="restaurantHeader">Address:
+                <p className="restaurantDetails">{restaurant.formatted_address}</p>
+                </span>
+                
+                  <span className="restaurantHeader">Rating:
+                  <p className="restaurantDetails">{restaurant.rating}</p>
+                  </span>
+               
+                <span className="restaurantHeader">Price Level:
+                 <p className="restaurantDetails">{restaurant.price_level}</p>
+                 </span>
+
+                  <span className="btn-group">
+                <a href={restaurant.formatted_address} rel="noopener noreferrer" target="_blank"> </a>
+                <button className="saveButton btn-default" onClick={() => this.handleClick(restaurant)}>Save Restaurant to Favorites</button>
+                </span>
+                 
               </ul>
            
-           
-            
-
-
-              <span className="btn-group pull-right">
-                <a href={restaurant.formatted_address} rel="noopener noreferrer" target="_blank">
-                  
-                </a>
-
-                {/*
-                  By using an arrow function callback to wrap this.handleClick,
-                  we can pass in an article as an argument
-                  //when you have a button do onclick and bring ina function and this.handleClick
-                  //assigns the function to this button 
-                  //handle click is receiving the article 
-                */}
-                <button className="btn btn-primary" onClick={() => this.handleClick(restaurant)}>Save</button>
-              </span>
-            
-
           </li>
 
         </div>
@@ -63,10 +61,12 @@ var Results = React.createClass({
 
   },
 
-
   handleClick: function(item) {
     console.log("saved restaurant");
 
+    helpers.postSaved(item.name, item.formatted_address).then(function() {
+      console.log("this was saved");
+    });
 
   },
 
@@ -77,11 +77,11 @@ var Results = React.createClass({
    render: function(){
     return(
 
-      <div className="panel panel-success">
-        <div className="panel-heading">
-          <h3 className="panel-title text-center">Results</h3>
+      <div className="resultsPanel panel">
+        <div className="resultsPanelHeader panel-heading">
+          <h3 className="resultsText panel-title text-center">Results</h3>
         </div>
-        <div className="panel-body">
+        <div className="resultsPanelOutline panel-body">
             {this.renderRestaurants()}
         </div>
       </div>

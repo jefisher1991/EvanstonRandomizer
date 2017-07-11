@@ -22269,18 +22269,22 @@
 				'div',
 				{ className: 'container' },
 				React.createElement(
-					'h1',
-					{ className: 'text-center' },
-					' Restaurant Randomizer'
+					'div',
+					{ className: 'panel-heading' },
+					React.createElement(
+						'h3',
+						{ className: 'title panel-title text-center' },
+						'Restaurant Roulette'
+					)
 				),
 				React.createElement(
 					'div',
-					{ className: 'row' },
+					{ className: ' playRouletteRow row' },
 					React.createElement(Form, { onResultChange: this.onResultChange })
 				),
 				React.createElement(
 					'div',
-					{ className: 'row' },
+					{ className: ' resultsRow row' },
 					React.createElement(Results, { results: this.state.results })
 				)
 			);
@@ -23854,27 +23858,14 @@
 
 	    return React.createElement(
 	      'div',
-	      { className: 'panel panel-primary' },
+	      { className: 'panel-body text-center' },
 	      React.createElement(
-	        'div',
-	        { className: 'panel-heading' },
+	        'form',
+	        null,
 	        React.createElement(
-	          'h2',
-	          { className: 'panel-title text-center' },
-	          'SEARCH RESTAURANTS'
-	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'panel-body text-center' },
-	        React.createElement(
-	          'form',
-	          null,
-	          React.createElement(
-	            'button',
-	            { className: 'btn btn-primary', onClick: this.handleClick },
-	            'Play Restaurant Roulette!! '
-	          )
+	          'button',
+	          { className: 'spinTheWheel btn btn-primary', onClick: this.handleClick },
+	          ' Spin the Wheel '
 	        )
 	      )
 	    );
@@ -23895,8 +23886,8 @@
 	var evanston = new google.maps.LatLng(42.0483, -87.6821);
 
 	var map = new google.maps.Map(document.getElementById('app'), {
-		center: evanston,
-		zoom: 5
+	  center: evanston,
+	  zoom: 5
 	});
 
 	var service = new google.maps.places.PlacesService(map);
@@ -23904,32 +23895,44 @@
 	// Helper Functions
 	var helpers = {
 
-		query: function query(location, callback) {
-			// remember to swap location param with location key in object!
-			var request = {
-				location: evanston,
-				radius: '450',
-				query: 'restaurant'
-			};
+	  query: function query(location, callback) {
+	    // remember to swap location param with location key in object!
+	    var request = {
+	      location: evanston,
+	      radius: '450',
+	      query: 'restaurant'
+	    };
 
-			service.textSearch(request, callback);
-		}
+	    service.textSearch(request, callback);
+	  },
 
-		// We export the helpers function (which contains getGithubInfo)
+	  postSaved: function postSaved(name, formatted_address) {
+	    var newRestaurant = { restaurantName: name, location: formatted_address };
+	    return axios.post("/api/saved", newRestaurant).then(function (response) {
+	      console.log("axios results", response.data._id);
+	      return response.data._id;
+	    });
+	  }
+
+	  // We export the helpers function (which contains getGithubInfo)
 	};module.exports = helpers;
 
 /***/ }),
 /* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	// Include React
 	var React = __webpack_require__(1);
 
+	//require helpers
+
+	var helpers = __webpack_require__(212);
+
 	// Component creation
 	var Results = React.createClass({
-	  displayName: 'Results',
+	  displayName: "Results",
 
 
 	  getInitialState: function getInitialState() {
@@ -23945,61 +23948,75 @@
 	  //index is the postiion of the array that you are iterating through 
 
 	  renderRestaurants: function renderRestaurants() {
-	    console.log('this was called');
 	    return this.props.results.map(function (restaurant, index) {
 	      var _this = this;
 
 	      // Each article thus reperesents a list group item with a known index
 	      return React.createElement(
-	        'div',
+	        "div",
 	        { key: 0 },
 	        React.createElement(
-	          'li',
-	          { className: 'list-group-item' },
+	          "li",
+	          { className: "list-group-item" },
 	          React.createElement(
-	            'ul',
+	            "ul",
 	            null,
 	            React.createElement(
-	              'span',
-	              null,
-	              restaurant.name
+	              "span",
+	              { className: "restaurantNameHeader" },
+	              "Name:",
+	              React.createElement(
+	                "p",
+	                { className: "restaurantName" },
+	                " ",
+	                restaurant.name
+	              )
 	            ),
 	            React.createElement(
-	              'span',
-	              null,
-	              restaurant.formatted_address
+	              "span",
+	              { className: "restaurantHeader" },
+	              "Address:",
+	              React.createElement(
+	                "p",
+	                { className: "restaurantDetails" },
+	                restaurant.formatted_address
+	              )
 	            ),
 	            React.createElement(
-	              'span',
-	              null,
-	              restaurant.icon
+	              "span",
+	              { className: "restaurantHeader" },
+	              "Rating:",
+	              React.createElement(
+	                "p",
+	                { className: "restaurantDetails" },
+	                restaurant.rating
+	              )
 	            ),
 	            React.createElement(
-	              'span',
-	              null,
-	              restaurant.opening_hours.open_now
+	              "span",
+	              { className: "restaurantHeader" },
+	              "Price Level:",
+	              React.createElement(
+	                "p",
+	                { className: "restaurantDetails" },
+	                restaurant.price_level
+	              )
 	            ),
 	            React.createElement(
-	              'span',
-	              null,
-	              restaurant.rating
-	            ),
-	            React.createElement(
-	              'span',
-	              null,
-	              restaurant.price_level
-	            )
-	          ),
-	          React.createElement(
-	            'span',
-	            { className: 'btn-group pull-right' },
-	            React.createElement('a', { href: restaurant.formatted_address, rel: 'noopener noreferrer', target: '_blank' }),
-	            React.createElement(
-	              'button',
-	              { className: 'btn btn-primary', onClick: function onClick() {
-	                  return _this.handleClick(restaurant);
-	                } },
-	              'Save'
+	              "span",
+	              { className: "btn-group" },
+	              React.createElement(
+	                "a",
+	                { href: restaurant.formatted_address, rel: "noopener noreferrer", target: "_blank" },
+	                " "
+	              ),
+	              React.createElement(
+	                "button",
+	                { className: "saveButton btn-default", onClick: function onClick() {
+	                    return _this.handleClick(restaurant);
+	                  } },
+	                "Save Restaurant to Favorites"
+	              )
 	            )
 	          )
 	        )
@@ -24009,24 +24026,28 @@
 
 	  handleClick: function handleClick(item) {
 	    console.log("saved restaurant");
+
+	    helpers.postSaved(item.name, item.formatted_address).then(function () {
+	      console.log("this was saved");
+	    });
 	  },
 
 	  render: function render() {
 	    return React.createElement(
-	      'div',
-	      { className: 'panel panel-success' },
+	      "div",
+	      { className: "resultsPanel panel" },
 	      React.createElement(
-	        'div',
-	        { className: 'panel-heading' },
+	        "div",
+	        { className: "resultsPanelHeader panel-heading" },
 	        React.createElement(
-	          'h3',
-	          { className: 'panel-title text-center' },
-	          'Results'
+	          "h3",
+	          { className: "resultsText panel-title text-center" },
+	          "Results"
 	        )
 	      ),
 	      React.createElement(
-	        'div',
-	        { className: 'panel-body' },
+	        "div",
+	        { className: "resultsPanelOutline panel-body" },
 	        this.renderRestaurants()
 	      )
 	    );

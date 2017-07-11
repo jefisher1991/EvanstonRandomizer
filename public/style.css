@@ -2,6 +2,151 @@ body {
 	background-image: url('./RouletteCropped.jpg');
 	background-size: 100%; 
 	background-repeat: no-repeat; 
-	color: green;
+	margin-left:15px;
 }
+
+
+
+.title{
+	font-family: 'Rye', cursive;
+	font-size: 30px; 
+	border-color: white;
+	border-radius: 3px; 
+	background-color: black; 
+	color: #c1262e;
+	margin-left: 515px;
+	width:500px;
+	margin-top: 45px;
+	padding:15px;
+	margin-bottom:5px;
+
+}
+
+.restaurantNameHeader {
+	font-size: 20px; 
+	color:black;
+}
+
+.restaurantName {
+	font-size: 16px; 
+	color:black;
+}
+
+.restaurantHeader {
+	font-size: 18px; 
+	color:black;
+}
+
+.restaurantDetails{
+	font-size: 14px; 
+	color:black;
+}
+
+.resultsText{
+	font-family: 'Rye', cursive;
+	color: #c1262e;
+	font-size: 23px; 
+
+}
+.resultsPanelOutline {
+	padding:0px;
+}
+
+.resultsPanel{
+margin-left: 550px; 
+width:500px;
+margin-bottom: 0px;
+
+	
+}
+
+.container{
+	float:left;
+}
+
+.resultsPanelHeader{
+	background-color: black; 
+	color: #c1262e;
+}
+
+
+.spinTheWheel{
+	font-family: 'Rye', cursive;
+	font-size: 23px; 
+	background-color: black; 
+	color: #c1262e;
+	margin-left: 425px;
+	width:500px;
+	border-radius: 0px; 
+}
+
+.spinTheWheel:active:focus {
+  color: white; 
+  background-color: black; 
+  border-color: #494F57;
+}
+
+.spinTheWheel:hover{
+	background-color: #c1262e; 
+	color:black;
+}
+
+.spinTheWheel:visited{
+	background-color: black; 
+	color: #c1262e;
+}
+
+.spinTheWheel:focus{
+	background-color: black; 
+	color: #c1262e;
+}
+
+
+.saveButton{
+	
+	font-size: 14px; 
+	background-color: black; 
+	color: #c1262e;
+	border-radius: 3px; 
+	border-color: white;
+	border-style: none;
+
+}
+
+.saveButton:active:focus {
+  color: white; 
+  background-color: black; 
+  border-color: #494F57;
+}
+
+.saveButton:hover{
+	background-color: #c1262e; 
+	color:black;
+}
+
+.saveButton:visited{
+	background-color: black; 
+	color: #c1262e;
+}
+
+.saveButton:focus{
+	background-color: black; 
+	color: #c1262e;
+}
+
+.btn-primary{
+	border-color: white;
+	border-radius: 3px; 
+	background-color: black; 
+	color: #c1262e;
+
+}
+
+.playRouletteRow {
+	padding:0px;
+	margin-top: 2px; 
+	margin-bottom: 2px; 
+}
+
+
 

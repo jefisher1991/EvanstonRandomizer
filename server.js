@@ -75,6 +75,25 @@ app.get('/api/saved', function(req, res) {
 
 
 
+app.post('/api/saved', function(req, res) {
+    var newRestaurant = new restaurant (req.body);
+
+  
+    newRestaurant.save(function(err, doc) {
+      if (err) {
+
+        console.log(err);
+      }
+
+      else {
+        res.send(doc);
+      }
+
+    });
+
+  });
+
+
 
 app.listen(PORT, function() {
   console.log("App listening on PORT 👉 " + PORT);

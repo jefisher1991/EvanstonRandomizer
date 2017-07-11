@@ -71,12 +71,18 @@ var Main = React.createClass({
 
 			<div className="container">
 
-					<h1 className="text-center"> Restaurant Randomizer</h1>
-				<div className="row">
+
+
+
+		<div className="panel-heading">
+          <h3 className="title panel-title text-center">Restaurant Roulette</h3>
+        </div>
+
+				<div className=" playRouletteRow row">
 					<Form onResultChange={this.onResultChange} />
 				</div>
 
-				<div className="row">
+				<div className=" resultsRow row">
 					<Results results={this.state.results}/>
 				</div>
 
