@@ -23914,11 +23914,11 @@
 	var axios = __webpack_require__(185);
 
 	var API = "AIzaSyC585Jhr1eNvtH19TWMycNAZgthBaciGvA";
-	var evanston = new google.maps.LatLng(42.0451, -87.6877);
+	var evanston = new google.maps.LatLng(42.0483, -87.6821);
 
 	var map = new google.maps.Map(document.getElementById('app'), {
-		center: evanston,
-		zoom: 15
+	  center: evanston,
+	  zoom: 5
 	});
 
 	var service = new google.maps.places.PlacesService(map);
@@ -23926,32 +23926,44 @@
 	// Helper Functions
 	var helpers = {
 
-		query: function query(location, callback) {
-			// remember to swap location param with location key in object!
-			var request = {
-				location: evanston,
-				radius: '1000',
-				query: 'restaurant'
-			};
+	  query: function query(location, callback) {
+	    // remember to swap location param with location key in object!
+	    var request = {
+	      location: evanston,
+	      radius: '450',
+	      query: 'restaurant'
+	    };
 
-			service.textSearch(request, callback);
-		}
+	    service.textSearch(request, callback);
+	  },
 
-		// We export the helpers function (which contains getGithubInfo)
+	  postSaved: function postSaved(name, formatted_address) {
+	    var newRestaurant = { restaurantName: name, location: formatted_address };
+	    return axios.post("/api/saved", newRestaurant).then(function (response) {
+	      console.log("axios results", response.data._id);
+	      return response.data._id;
+	    });
+	  }
+
+	  // We export the helpers function (which contains getGithubInfo)
 	};module.exports = helpers;
 
 /***/ }),
 /* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	// Include React
 	var React = __webpack_require__(1);
 
+	//require helpers
+
+	var helpers = __webpack_require__(212);
+
 	// Component creation
 	var Results = React.createClass({
-	  displayName: "Results",
+	  displayName: 'Results',
 
 
 	  getInitialState: function getInitialState() {
@@ -23964,31 +23976,115 @@
 	  //   this.props.saveArticle(result.headline.main, result.pub_date, result.web_url);
 	  // },
 
-	  // Here we render the function
+	  //index is the postiion of the array that you are iterating through 
+
+	  renderRestaurants: function renderRestaurants() {
+	    console.log('this was called');
+	    return this.props.results.map(function (restaurant, index) {
+	      var _this = this;
+
+	      // Each article thus reperesents a list group item with a known index
+	      return React.createElement(
+	        'div',
+	        { key: 0 },
+	        React.createElement(
+	          'li',
+	          { className: 'list-group-item' },
+	          React.createElement(
+	            'ul',
+	            null,
+	            React.createElement(
+	              'span',
+	              null,
+	              restaurant.name
+	            ),
+	            React.createElement(
+	              'span',
+	              null,
+	              restaurant.formatted_address
+	            ),
+	            React.createElement(
+	              'span',
+	              null,
+	              restaurant.opening_hours.open_now
+	            ),
+	            React.createElement(
+	              'span',
+	              null,
+	              restaurant.rating
+	            ),
+	            React.createElement(
+	              'span',
+	              null,
+	              restaurant.price_level
+	            )
+	          ),
+	          React.createElement(
+	            'span',
+	            { className: 'btn-group pull-right' },
+	            React.createElement('a', { href: restaurant.formatted_address, rel: 'noopener noreferrer', target: '_blank' }),
+	            React.createElement(
+	              'button',
+	              { className: 'btn btn-primary', onClick: function onClick() {
+	                  return _this.handleClick(restaurant);
+	                } },
+	              'Save'
+	            )
+	          )
+	        )
+	      );
+	    }.bind(this));
+	  },
+
+	  handleClick: function handleClick(item) {
+	    console.log("saved restaurant");
+
+	    helpers.postSaved(item.name, item.formatted_address).then(function () {
+	      console.log("this was saved");
+	    });
+	  },
+
 	  render: function render() {
 	    return React.createElement(
-	      "div",
-	      { className: "panel panel-success" },
+	      'div',
+	      { className: 'panel panel-success' },
 	      React.createElement(
-	        "div",
-	        { className: "panel-heading" },
+	        'div',
+	        { className: 'panel-heading' },
 	        React.createElement(
-	          "h3",
-	          { className: "panel-title text-center" },
-	          "Results"
+	          'h3',
+	          { className: 'panel-title text-center' },
+	          'Results'
 	        )
 	      ),
 	      React.createElement(
-	        "div",
-	        { className: "panel-body" },
-	        JSON.stringify(this.props.results)
+	        'div',
+	        { className: 'panel-body' },
+	        this.renderRestaurants()
 	      )
 	    );
 	  }
 	});
 
-	// Export the component back for use in other files
 	module.exports = Results;
+
+	//   // Here we render the function
+	// //   render: function(){
+	// //     return(
+
+	// //       <div className="panel panel-success">
+	// //         <div className="panel-heading">
+	// //           <h3 className="panel-title text-center">Results</h3>
+	// //         </div>
+	// //         <div className="panel-body">
+	// //             {JSON.stringify(this.props.results)}
+	// //         </div>
+	// //       </div>
+	// //     )
+	// //   }
+	// // });
+
+	// // Export the component back for use in other files
 
 /***/ }),
 /* 214 */

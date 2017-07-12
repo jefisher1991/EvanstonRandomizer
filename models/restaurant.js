@@ -12,6 +12,12 @@ var RestaurantSchema = new Schema({
     default: "Evanston, Illinois",
     required: "Location is Required"
   },
+  rating: {
+    type: Number,
+  },
+  price_level: {
+    type: Number,
+  },
 
   comment: {
     type: String, 

@@ -32,7 +32,6 @@ var Results = React.createClass({
               <ul>
                 <span>{restaurant.name}</span>
                 <span>{restaurant.formatted_address}</span>
-                 <span>{restaurant.icon}</span>
                  <span>{restaurant.opening_hours.open_now}</span>
                  <span>{restaurant.rating}</span>
                  <span>{restaurant.price_level}</span>
