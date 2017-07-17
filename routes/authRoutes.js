@@ -2,7 +2,7 @@ var path = require("path");
 
 module.exports = function(app, passport) {
 	app.get('/signup', function(req, res) {
-		res.render('signup');
+		res.render('Login');
 	});
 
 	app.get('/signin', function(req, res) {

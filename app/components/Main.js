@@ -1,9 +1,11 @@
 var axios = require('axios');
 var React = require('react');
-
+var routes = require ('react-router');  
 var Form = require('./panels/Form');
 var Results = require('./panels/Results');
 var Saved = require('./panels/Saved');
+
+var Link = require("react-router").Link;
 
 
 var helpers = require('./data.js');
@@ -70,6 +72,10 @@ var Main = React.createClass({
 		return(
 
 			<div className="container">
+
+<a href="/signin" class="btn btn-sucess">Sign In</a>
+
+<a href="/signup" class="btn btn-info">Sign Up</a> 
 
 
 

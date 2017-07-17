@@ -7,11 +7,13 @@ var passport = require('passport');
 var session = require('express-session'); 
 var exphbs = require("express-handlebars");
 var users = require("./models/users.js")
+var reactRoutes = require("react-router");
+
 
 var restaurant = require('./models/restaurant.js');
 
 var app = express();
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 
 var hbs = exphbs.create({
 });
@@ -37,17 +39,15 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 
-require("./routes/html-routes.js")(app);
+
 require("./routes/authRoutes.js")(app, passport);
 require('./config/passport/passport.js')(passport, users);
-
-
 
 app.use(express.static('./public'));
 
 mongoose.connect('mongodb://localhost/restaurants');
 
-var test = require('./models/restaurant.js'); 
+
 
 var db = mongoose.connection;
 
@@ -60,9 +60,8 @@ db.once('open', function () {
 });
 
 
-
 app.get('/', function(req, res){
-  res.sendFile('./public/index.html');
+  res.sendFile(__dirname + "/public/reactIndex.html");
 })
 
 app.post('/submit', function(req, res){
@@ -117,22 +116,29 @@ app.post('/api/saved', function(req, res) {
 
 
 app.post('/signup', function(req, res) {
-  if (!req.body.username || !req.body.password) {
-    res.json({success: false, msg: 'Please pass username and password.'});
-  } else {
-    var newUser = new User({
-      username: req.body.username,
-      password: req.body.password
-    });
-    // save the user
-    newUser.save(function(err) {
-      if (err) {
-        return res.json({success: false, msg: 'Username already exists.'});
-      }
-      res.json({success: true, msg: 'Successful created new user.'});
-    });
-  }
+  res.send("hi")
+  // if (!req.body.username || !req.body.password) {
+  //   res.json({success: false, msg: 'Please pass username and password.'});
+  // } else {
+  //   var newUser = new User({
+  //     username: req.body.username,
+  //     password: req.body.password
+  //   });
+
+  //   console.log("hey it's hitting")
+  //   // save the user
+  //   newUser.save(function(err) {
+  //     if (err) {
+  //       return res.json({success: false, msg: 'Username already exists.'});
+  //     }
+  //     res.json({success: true, msg: 'Successful created new user.'});
+  //   });
+  // }
 });
+
+app.post("/test", function(req, res) {
+  res.send("this is the post officew");
+})
 
 
 app.post('/signin', function(req, res) {
