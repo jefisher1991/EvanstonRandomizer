@@ -8,12 +8,13 @@ var session = require('express-session');
 var exphbs = require("express-handlebars");
 var users = require("./models/users.js")
 var reactRoutes = require("react-router");
-
+var app = express();
+var PORT = process.env.PORT || 8080;
+var db = mongoose.connection;
 
 var restaurant = require('./models/restaurant.js');
 
-var app = express();
-var PORT = process.env.PORT || 8080;
+
 
 var hbs = exphbs.create({
 });
@@ -38,18 +39,12 @@ app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true}))
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-
-
-require("./routes/authRoutes.js")(app, passport);
+require('./config/routes.js')(app, passport);
 require('./config/passport/passport.js')(passport, users);
 
 app.use(express.static('./public'));
 
 mongoose.connect('mongodb://localhost/restaurants');
-
-
-
-var db = mongoose.connection;
 
 db.on('error', function (err) {
   console.log('Mongoose Error: ', err);
@@ -115,55 +110,55 @@ app.post('/api/saved', function(req, res) {
 
 
 
-app.post('/signup', function(req, res) {
-  res.send("hi")
-  // if (!req.body.username || !req.body.password) {
-  //   res.json({success: false, msg: 'Please pass username and password.'});
-  // } else {
-  //   var newUser = new User({
-  //     username: req.body.username,
-  //     password: req.body.password
-  //   });
+// app.post('/signup', function(req, res) {
+//   res.send("hi")
+//   // if (!req.body.username || !req.body.password) {
+//   //   res.json({success: false, msg: 'Please pass username and password.'});
+//   // } else {
+//   //   var newUser = new User({
+//   //     username: req.body.username,
+//   //     password: req.body.password
+//   //   });
 
-  //   console.log("hey it's hitting")
-  //   // save the user
-  //   newUser.save(function(err) {
-  //     if (err) {
-  //       return res.json({success: false, msg: 'Username already exists.'});
-  //     }
-  //     res.json({success: true, msg: 'Successful created new user.'});
-  //   });
-  // }
-});
+//   //   console.log("hey it's hitting")
+//   //   // save the user
+//   //   newUser.save(function(err) {
+//   //     if (err) {
+//   //       return res.json({success: false, msg: 'Username already exists.'});
+//   //     }
+//   //     res.json({success: true, msg: 'Successful created new user.'});
+//   //   });
+//   // }
+// });
 
 app.post("/test", function(req, res) {
   res.send("this is the post officew");
 })
 
 
-app.post('/signin', function(req, res) {
-  User.findOne({
-    username: req.body.username
-  }, function(err, user) {
-    if (err) throw err;
+// app.post('/signin', function(req, res) {
+//   User.findOne({
+//     username: req.body.username
+//   }, function(err, user) {
+//     if (err) throw err;
 
-    if (!user) {
-      res.send({success: false, msg: 'Authentication failed. User not found.'});
-    } else {
-      // check if password matches
-      user.comparePassword(req.body.password, function (err, isMatch) {
-        if (isMatch && !err) {
-          // if user is found and password is right create a token
-          var token = jwt.sign(user, config.secret);
-          // return the information including token as JSON
-          res.json({success: true, token: 'JWT ' + token});
-        } else {
-          res.send({success: false, msg: 'Authentication failed. Wrong password.'});
-        }
-      });
-    }
-  });
-});
+//     if (!user) {
+//       res.send({success: false, msg: 'Authentication failed. User not found.'});
+//     } else {
+//       // check if password matches
+//       user.comparePassword(req.body.password, function (err, isMatch) {
+//         if (isMatch && !err) {
+//           // if user is found and password is right create a token
+//           var token = jwt.sign(user, config.secret);
+//           // return the information including token as JSON
+//           res.json({success: true, token: 'JWT ' + token});
+//         } else {
+//           res.send({success: false, msg: 'Authentication failed. Wrong password.'});
+//         }
+//       });
+//     }
+//   });
+// });
 
 
 

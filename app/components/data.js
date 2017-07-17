@@ -35,12 +35,7 @@ var helpers = {
         return response.data._id;
       });
   	}
-
-
 }
-
-
-
 
 // We export the helpers function (which contains getGithubInfo)
 module.exports = helpers;

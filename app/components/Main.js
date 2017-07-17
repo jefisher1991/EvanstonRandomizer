@@ -1,100 +1,68 @@
 var axios = require('axios');
 var React = require('react');
-var routes = require ('react-router');  
+var routes = require ('react-router'); 
 var Form = require('./panels/Form');
 var Results = require('./panels/Results');
-var Saved = require('./panels/Saved');
-
 var Link = require("react-router").Link;
-
-
 var helpers = require('./data.js');
 
-// This is the main component.
+// This is the login component.
 var Main = React.createClass({
 
-	getInitialState: function(){
-		return {
-			// location: "",
-			results: []
-			// topic: "",
-			// startYear: "",
-			// endYear: "",
-			// results: [],
-			// articles: []
-		}
-	},
+getInitialState: function(){
+    return {
+      // location: "",
+      results: []
+      // topic: "",
+      // startYear: "",
+      // endYear: "",
+      // results: [],
+      // articles: []
+    }
+    },
 
-	onResultChange: function(randomizeRestaurants) {
-		this.setState({results: randomizeRestaurants});
-	},
+ onSubmit: function(e) {
+    e.preventDefault()
 
-	// saveArticle: function(title, date, url){
-	// 	axios.post('/api/saved', {title: title, date: date, url: url})
-	// 	.then(function(response){
-	// 		console.log("SAVED IN MONGO.");
-	// 		return(response);
-	// 	})
-	// 	this.getArticle();
-	// },
-
-	// deleteArticle: function(article){
-	// 	axios.delete('/api/saved/' + article._id)
-	// 		.then(function(response){
-	// 			this.setState({
-	// 				articles: response.data
-	// 			});
-	// 			return response;
-	// 		}.bind(this));
-	// 	this.getArticle();
-	// },
-
-	// getArticle: function(){
-	// 	axios.get('/api/saved')
-	// 		.then(function(response){
-	// 			this.setState({
-	// 				articles: response.data
-	// 			});
-	// 		}.bind(this));
-	// },
-
-	// componentDidMount: function(){
-	// 	axios.get('/api/saved')
-	// 		.then(function(response){
-	// 			this.setState({
-	// 				articles: response.data
-	// 			});
-	// 		}.bind(this));
-	// },
-
-	// Here we render the function
-	render: function(){
-		return(
-
-			<div className="container">
-
-<a href="/signin" class="btn btn-sucess">Sign In</a>
-
-<a href="/signup" class="btn btn-info">Sign Up</a> 
+    // check if form is valid
+    var validation = this.refs.form.value().validation
+    if (ReactForms.validation.isFailure(validation)) {
+      console.log('invalid form')
+      return
+      }
+    },
 
 
+render: function(){
+// sign in
+  return(
+
+ <div className="loginForm">
+
+ <h3> Sign Up </h3>
+    <form id="signup" name="signup" method="post" action="/signup">
+
+      <label for="">Email</label>
+      <input className="form-control userEmail" placeholder="Enter your email" type="text" name="email"/>
+      <input className="form-control userPassword" placeholder="Create your password" type="text" name="password"/>
+
+   <button type="submit" class="btn btn-default signupbutton" >Submit</button>
+    </form>
 
 
-		<div className="panel-heading">
-          <h3 className="title panel-title text-center">Restaurant Roulette</h3>
-        </div>
-
-				<div className=" playRouletteRow row">
-					<Form onResultChange={this.onResultChange} />
-				</div>
-
-				<div className=" resultsRow row">
-					<Results results={this.state.results}/>
-				</div>
-
-			</div> 
-			)
-	}
+    <h3> Sign In </h3>
+    <form id="signin" name="signin" method="post" onSubmit={this.onSubmit}>
+  
+        <label for="email">Email Address</label>
+        <input className="text" name="email" type="text" />
+        <label for="password">Password</label>
+        <input name="password" type="password" />
+        <input className="btn signinbutton" type="submit" value="Sign In" />
+    </form>
+    
+</div>
+    
+  )
+  }
 });
-
 module.exports = Main;

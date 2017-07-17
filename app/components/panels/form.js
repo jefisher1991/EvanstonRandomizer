@@ -1,10 +1,7 @@
 
 var React = require('react');
 var routes = require ('react-router'); 
-
 var helpers = require('../data.js')
-
-
 var Form = React.createClass({
 
   getInitialState: function(){
@@ -13,8 +10,6 @@ var Form = React.createClass({
     }
   },
 
-
- 
   handleClick: function(e){
     e.preventDefault();
      helpers.query(this.state.location, function(response) {
