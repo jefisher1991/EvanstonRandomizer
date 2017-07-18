@@ -105,7 +105,7 @@ app.post('/api/saved', function(req, res) {
 
   });
 
-app.get('/api/users', function(req, res){
+app.post('/api/users', function(req, res){
   var newUser = new user (req.body); 
 
   newUser.save(function (err, doc){
@@ -123,7 +123,7 @@ app.get('/signup', function(req, res) {
   if (!req.body.username || !req.body.password) {
     res.json({success: false, msg: 'Please pass username and password.'});
   } else {
-    var newUser = new User({
+    var newUser = new users({
       username: req.body.username,
       password: req.body.password
     });

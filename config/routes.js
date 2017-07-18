@@ -62,7 +62,7 @@ module.exports = () => {
     <Router history={browserHistory}>
       <Route path="/" component={Main} />
       <Route path="/Saved" component={Saved} />
-      <Route path="signup" Redirect to={Game}/>
+    
       
     </Router>
   );

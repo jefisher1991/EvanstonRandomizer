@@ -12,13 +12,7 @@ var Main = React.createClass({
 
 getInitialState: function(){
     return {
-      // location: "",
       results: []
-      // topic: "",
-      // startYear: "",
-      // endYear: "",
-      // results: [],
-      // articles: []
     }
     },
 
@@ -49,7 +43,7 @@ render: function(){
         <input class="text" name="email" type="text" />
         <label for="password">Password</label>
         <input name="password" type="password" />
-        <input class="btn" type="submit" value="Sign In" />
+        <input class="btn" type="submit" value="Sign Up" />
     </form>
 
 
@@ -60,7 +54,7 @@ render: function(){
         <input className="text" name="email" type="text" />
         <label for="password">Password</label>
         <input name="password" type="password" />
-        <input className="btn signinbutton" type="submit" value="Sign In" />
+        <input className="btn" type="submit" value="Sign In" />
     </form>
     
 </div>
