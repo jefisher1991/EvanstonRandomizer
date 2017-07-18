@@ -1,10 +1,11 @@
 var axios = require('axios');
 var React = require('react');
 
-var Form = require('./panels/Form');
-var Results = require('./panels/Results');
-var Saved = require('./panels/Saved');
+var Form = require('./panels/form');
+var Results = require('./panels/results');
+var Saved = require('./panels/saved');
 
+var Link = require("react-router").Link;
 
 var helpers = require('./data.js');
 
@@ -66,29 +67,30 @@ var Main = React.createClass({
 	// },
 
 	// Here we render the function
-	render: function(){
+	render: function() {
 		return(
 
 			<div className="container">
-
-
-
-
-		<div className="panel-heading">
-          <h3 className="title panel-title text-center">Restaurant Roulette</h3>
-        </div>
+				<div className="panel-heading">
+					<Link to="/saved">Saved Articles</Link>
+	          		<h3 className="title panel-title text-center">Restaurant Roulette</h3>
+        	    </div>
 
 				<div className=" playRouletteRow row">
-					<Form onResultChange={this.onResultChange} />
+					{/*<Form onResultChange={this.onResultChange} />*/}
 				</div>
 
 				<div className=" resultsRow row">
-					<Results results={this.state.results}/>
+				{/*	<Results results={this.state.results}/>*/}
+				{/*<Saved saved={this.state.saved}/>*/}
 				</div>
-
+				<div>
+				 {/*{this.props.children}*/}
+                </div>
 			</div> 
-			)
+		);
 	}
 });
+
 
 module.exports = Main;

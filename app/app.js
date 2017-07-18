@@ -3,10 +3,11 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 // Include the Main Component
-var Main = require('./Components/Main')
+var Router = require('./config/routes');
+console.log('ROUTER IS', Router);
 
 // This code here allows us to render our main component (in this case "Main")
 ReactDOM.render(
-	<Main />,
+	<Router />,
 	document.getElementById('app')
 )
