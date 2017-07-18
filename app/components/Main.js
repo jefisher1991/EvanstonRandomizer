@@ -41,18 +41,20 @@ render: function(){
  <div className="loginForm">
 
  <h3> Sign Up </h3>
-    <form id="signup" name="signup" method="post" action="/signup">
 
-      <label for="">Email</label>
-      <input className="form-control userEmail" placeholder="Enter your email" type="text" name="email"/>
-      <input className="form-control userPassword" placeholder="Create your password" type="text" name="password"/>
 
-   <button type="submit" class="btn btn-default signupbutton" >Submit</button>
+
+    <form id="signup" name="signup" method="GET" action="/signup">
+        <label for="email">Email Address</label>
+        <input class="text" name="email" type="text" />
+        <label for="password">Password</label>
+        <input name="password" type="password" />
+        <input class="btn" type="submit" value="Sign In" />
     </form>
 
 
     <h3> Sign In </h3>
-    <form id="signin" name="signin" method="post" onSubmit={this.onSubmit}>
+    <form id="signin" name="signin" method="post" action="/signin">
   
         <label for="email">Email Address</label>
         <input className="text" name="email" type="text" />

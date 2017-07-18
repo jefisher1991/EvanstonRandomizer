@@ -41,7 +41,7 @@
 var React = require("react");
 // Include the react-router module
 var router = require("react-router");
-console.log(router);
+
 // Include the Route component
 var Route = router.Route;
 //  Include the IndexRoute (catch-all route)
@@ -53,7 +53,7 @@ var Router = router.Router;
 var browserHistory = router.browserHistory;
 // Reference the high-level components
 var Main = require("../app/components/Main");
-// var Search = require("../components/Search");
+var Game = require("../app/components/Game");
 var Saved = require("../app/components/panels/Saved");
 // Export the Routes
 module.exports = () => {
@@ -61,11 +61,9 @@ module.exports = () => {
   // High level component is the Router component.
     <Router history={browserHistory}>
       <Route path="/" component={Main} />
-      {/* If user selects Search or Saved show the appropriate component */}
-
       <Route path="/Saved" component={Saved} />
-
-      {/* If user selects any other path... we get the Home Route */}
+      <Route path="signup" Redirect to={Game}/>
+      
     </Router>
   );
 }

@@ -12,8 +12,7 @@ var PORT = process.env.PORT || 8080;
 var db = mongoose.connection;
 
 var restaurant = require('./models/restaurant.js');
-
-
+var users = require('./models/users.js');
 
 var hbs = exphbs.create({
 });
@@ -57,19 +56,19 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + "/public/reactIndex.html");
 })
 
-app.post('/submit', function(req, res){
-  var content = test(req.body); 
-    content.save(function(error, doc) {
-    // Send any errors to the browser
-    if (error) {
-      res.send(error);
-    }
-    // Otherwise, send the new doc to the browser
-    else {
-      res.send(doc);
-    }
-  });
-});
+// app.post('/submit', function(req, res){
+//   var content = test(req.body); 
+//     content.save(function(error, doc) {
+//     // Send any errors to the browser
+//     if (error) {
+//       res.send(error);
+//     }
+//     // Otherwise, send the new doc to the browser
+//     else {
+//       res.send(doc);
+//     }
+//   });
+// });
 
 
 app.get('/api/saved', function(req, res) {
@@ -106,36 +105,44 @@ app.post('/api/saved', function(req, res) {
 
   });
 
+app.get('/api/users', function(req, res){
+  var newUser = new user (req.body); 
 
-
-// app.post('/signup', function(req, res) {
-//   res.send("hi")
-//   // if (!req.body.username || !req.body.password) {
-//   //   res.json({success: false, msg: 'Please pass username and password.'});
-//   // } else {
-//   //   var newUser = new User({
-//   //     username: req.body.username,
-//   //     password: req.body.password
-//   //   });
-
-//   //   console.log("hey it's hitting")
-//   //   // save the user
-//   //   newUser.save(function(err) {
-//   //     if (err) {
-//   //       return res.json({success: false, msg: 'Username already exists.'});
-//   //     }
-//   //     res.json({success: true, msg: 'Successful created new user.'});
-//   //   });
-//   // }
-// });
-
-app.post("/test", function(req, res) {
-  res.send("this is the post officew");
+  newUser.save(function (err, doc){
+    if (err) {
+      console.log (err)
+    }
+    else {
+      res.send(doc)
+    }
+  })
 })
 
 
+app.get('/signup', function(req, res) {
+  if (!req.body.username || !req.body.password) {
+    res.json({success: false, msg: 'Please pass username and password.'});
+  } else {
+    var newUser = new User({
+      username: req.body.username,
+      password: req.body.password
+    });
+
+    console.log("hey it's hitting")
+    // save the user
+    newUser.save(function(err) {
+      if (err) {
+        return res.json({success: false, msg: 'Username already exists.'});
+      }
+      res.json({success: true, msg: 'Successful created new user.'});
+    });
+  }
+});
+
+
+
 // app.post('/signin', function(req, res) {
-//   User.findOne({
+//   users.findOne({
 //     username: req.body.username
 //   }, function(err, user) {
 //     if (err) throw err;
@@ -144,7 +151,7 @@ app.post("/test", function(req, res) {
 //       res.send({success: false, msg: 'Authentication failed. User not found.'});
 //     } else {
 //       // check if password matches
-//       user.comparePassword(req.body.password, function (err, isMatch) {
+//       users.comparePassword(req.body.password, function (err, isMatch) {
 //         if (isMatch && !err) {
 //           // if user is found and password is right create a token
 //           var token = jwt.sign(user, config.secret);

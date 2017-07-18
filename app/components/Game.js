@@ -3,7 +3,7 @@ var React = require('react');
 var routes = require ('react-router'); 
 var Form = require('./panels/Form');
 var Results = require('./panels/Results');
-var game = require('./Game')
+var Game = require('./Game')
 
 var Link = require("react-router").Link;
 
