@@ -27,6 +27,14 @@ var helpers = {
 		service.textSearch(request, callback);
 	},
 
+	getSaved: function() {
+    return axios.get("/api/saved")
+      .then(function(results) {
+        console.log("axios results", results);
+        return results;
+      });
+  },
+
 	postSaved: function(name, formatted_address) {
     	var newRestaurant = { restaurantName: name, location: formatted_address};
     	return axios.post("/api/saved", newRestaurant)
@@ -34,10 +42,24 @@ var helpers = {
         console.log("axios results", response.data._id);
         return response.data._id;
       });
+
+  	deleteSaved: function(name, formatted_address) {
+    	return axios.delete("/api/saved", {
+      		params: {
+        		"restaurantName": name,
+        		"location": formatted_address,
+      		}
+    	})
+    	.then(function(results) {
+      		console.log("axios results", results);
+      		return results;
+    	});
+
+
   	}
 
 
-}
+};
 
 
 

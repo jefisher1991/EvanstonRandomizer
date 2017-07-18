@@ -23,7 +23,7 @@ var Saved = React.createClass({
 
 componentDidMount: function() {
     helpers.getSaved().then(function(restaurantData) {
-      this.setState({savedRestaurants: restaurantData.data });
+      this.setState({ savedRestaurants: restaurantData.data });
       console.log("saved results", restaurantData.data);
     }.bind(this));
   },
@@ -38,8 +38,8 @@ componentDidMount: function() {
     helpers.deleteSaved(item.name, item.formatted_address).then(function() {
 
       // Get the revised list!
-      helpers.getSaved().then(function(revisedData) {
-        this.setState({savedRestaurants: restaurantData.data });
+      helpers.getSaved().then(function(restaurantData) {
+        this.setState({ savedRestaurants: restaurantData.data });
         console.log("saved results", restaurantData.data);
       }.bind(this));
 
