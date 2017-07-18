@@ -7,7 +7,6 @@ var passport = require('passport');
 var session = require('express-session'); 
 var exphbs = require("express-handlebars");
 var users = require("./models/users.js")
-var reactRoutes = require("react-router");
 var app = express();
 var PORT = process.env.PORT || 8080;
 var db = mongoose.connection;
@@ -39,7 +38,6 @@ app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true}))
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-require('./config/routes.js')(app, passport);
 require('./config/passport/passport.js')(passport, users);
 
 app.use(express.static('./public'));
