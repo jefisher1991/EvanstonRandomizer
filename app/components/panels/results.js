@@ -26,6 +26,7 @@ var Results = React.createClass({
 
       // Each article thus reperesents a list group item with a known index
       return (
+
         <div key={0}>
           <li className="list-group-item">
               <ul>
@@ -69,9 +70,6 @@ var Results = React.createClass({
     });
 
   },
-
-
-
 
 
    render: function(){

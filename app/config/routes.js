@@ -16,14 +16,15 @@ var browserHistory = router.browserHistory;
 var Main = require("../components/Main");
 // var Search = require("../components/Search");
 var Saved = require("../components/panels/saved");
+var Results = require("../components/panels/results");
 // Export the Routes
 module.exports = () => {
   return (
   // High level component is the Router component.
     <Router history={browserHistory}>
       <Route path="/" component={Main} />
+     
       {/* If user selects Search or Saved show the appropriate component */}
-
       <Route path="/saved" component={Saved} />
       {/* If user selects any other path... we get the Home Route */}
     </Router>

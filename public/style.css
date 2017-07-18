@@ -5,22 +5,37 @@ body {
 	margin-left:15px;
 }
 
-
-
 .title{
 	font-family: 'Rye', cursive;
-	font-size: 30px; 
+	font-size: 35px; 
 	border-color: white;
 	border-radius: 3px; 
 	background-color: black; 
 	color: #c1262e;
-	margin-left: 515px;
-	width:500px;
-	margin-top: 45px;
+	width:550px; 
+	margin-top: 30px;
 	padding:15px;
-	margin-bottom:5px;
+	margin-bottom:20px;
 
 }
+.resultsPanel{
+	color: #c1262e;
+	font-family: 'Rye', cursive;
+	font-size: 23px; 
+	background-color: black; 
+	color: #c1262e;
+	width:550px;
+	border-radius: 0px; 
+	
+}
+.resultsText{
+	font-family: 'Rye', cursive;
+	font-size: 23px; 
+	color: #c1262e;
+
+
+}
+
 
 .restaurantNameHeader {
 	font-size: 20px; 
@@ -42,42 +57,16 @@ body {
 	color:black;
 }
 
-.resultsText{
-	font-family: 'Rye', cursive;
-	color: #c1262e;
-	font-size: 23px; 
-
-}
-.resultsPanelOutline {
-	padding:0px;
-}
-
-.resultsPanel{
-margin-left: 550px; 
-width:500px;
-margin-bottom: 0px;
-
-	
-}
-
-.container{
-	float:left;
-}
-
-.resultsPanelHeader{
-	background-color: black; 
-	color: #c1262e;
-}
-
 
 .spinTheWheel{
 	font-family: 'Rye', cursive;
 	font-size: 23px; 
 	background-color: black; 
 	color: #c1262e;
-	margin-left: 425px;
-	width:500px;
+	width:550px; 
 	border-radius: 0px; 
+	padding-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .spinTheWheel:active:focus {
@@ -142,11 +131,36 @@ margin-bottom: 0px;
 
 }
 
-.playRouletteRow {
-	padding:0px;
-	margin-top: 2px; 
-	margin-bottom: 2px; 
+
+
+.allItems{
+	margin-left:600px; 
+	width:600px;
+	padding:15px; 
+	clear:both;
+
+
 }
 
+.container{
+	margin:100px;
+margin-top:50px;
+clear:both;
 
 
+}
+
+.savedRestaurantsText{
+	font-family: 'Rye', cursive;
+	text-align: center; 
+	font-size: 18px; 
+	border-color: white;
+	border-radius: 3px; 
+	background-color: black; 
+	color: #c1262e;
+	width:550px;
+	padding:15px;
+	margin-top: 10px;
+	margin-right:0px;
+
+}

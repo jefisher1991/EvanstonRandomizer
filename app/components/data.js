@@ -42,7 +42,7 @@ var helpers = {
         console.log("axios results", response.data._id);
         return response.data._id;
       });
-
+},
   	deleteSaved: function(name, formatted_address) {
     	return axios.delete("/api/saved", {
       		params: {

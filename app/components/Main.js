@@ -14,13 +14,9 @@ var Main = React.createClass({
 
 	getInitialState: function(){
 		return {
-			// location: "",
+			
 			results: []
-			// topic: "",
-			// startYear: "",
-			// endYear: "",
-			// results: [],
-			// articles: []
+			
 		}
 	},
 
@@ -28,69 +24,34 @@ var Main = React.createClass({
 		this.setState({results: randomizeRestaurants});
 	},
 
-	// saveArticle: function(title, date, url){
-	// 	axios.post('/api/saved', {title: title, date: date, url: url})
-	// 	.then(function(response){
-	// 		console.log("SAVED IN MONGO.");
-	// 		return(response);
-	// 	})
-	// 	this.getArticle();
-	// },
-
-	// deleteArticle: function(article){
-	// 	axios.delete('/api/saved/' + article._id)
-	// 		.then(function(response){
-	// 			this.setState({
-	// 				articles: response.data
-	// 			});
-	// 			return response;
-	// 		}.bind(this));
-	// 	this.getArticle();
-	// },
-
-	// getArticle: function(){
-	// 	axios.get('/api/saved')
-	// 		.then(function(response){
-	// 			this.setState({
-	// 				articles: response.data
-	// 			});
-	// 		}.bind(this));
-	// },
-
-	// componentDidMount: function(){
-	// 	axios.get('/api/saved')
-	// 		.then(function(response){
-	// 			this.setState({
-	// 				articles: response.data
-	// 			});
-	// 		}.bind(this));
-	// },
 
 	// Here we render the function
 	render: function() {
 		return(
+<div className ="container">
+	
 
-			<div className="container">
-				<div className="panel-heading">
-					<Link to="/saved">Saved Articles</Link>
-	          		<h3 className="title panel-title text-center">Restaurant Roulette</h3>
-        	    </div>
+<div className="allItems col-12">
 
-				<div className=" playRouletteRow row">
-					{/*<Form onResultChange={this.onResultChange} />*/}
-				</div>
+<h3 className="title panel-title text-center">Restaurant Roulette</h3>
+	      
+			<Form onResultChange={this.onResultChange} />
+			<Results results={this.state.results} />
 
-				<div className=" resultsRow row">
-				{/*	<Results results={this.state.results}/>*/}
-				{/*<Saved saved={this.state.saved}/>*/}
-				</div>
-				<div>
-				 {/*{this.props.children}*/}
-                </div>
-			</div> 
+			 <div>
+			<saved saved={this.state.saved}/>
+			</div>
+			 
+
+   
+</div>
+			 
+  </div>
+
 		);
 	}
 });
+
 
 
 module.exports = Main;

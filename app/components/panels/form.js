@@ -1,7 +1,7 @@
 
 var React = require('react');
 
-var helpers = require('../data.js')
+var helpers = require("../data")
 
 var Form = React.createClass({
 
@@ -36,12 +36,11 @@ var Form = React.createClass({
     return(
 
    
-        <div className="panel-body text-center">
-            <form >
+    
+            <div className="wheelBody">
               <button className="spinTheWheel btn btn-primary" onClick={this.handleClick}> Spin the Wheel </button>
-            </form>
-        </div>
-     
+            </div>
+   
 
     )
   } 

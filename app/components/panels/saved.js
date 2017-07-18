@@ -7,8 +7,21 @@ var helpers = require("../data.js");
 // Create the Main component
 var Saved = React.createClass({
 
+render: function() {
+    return (
+      <div className="panel panel-default">
+        <div className="panel-heading">
+          <h3 className="panel-title">Adder</h3>
+        </div>
+        <div className="panel-body text-center">
+          <h1>{this.props.saved}</h1>
+        </div>
+      </div>
+    );
+  }, 
   getInitialState: function() {
-    return { savedRestaurants: "" };
+    return { savedRestaurants: [] };
+
   },
 
   // When this component mounts, get all saved restaurants from our db
@@ -65,9 +78,8 @@ componentDidMount: function() {
    //this.state always refers to your state and above the state of saved restaurants 
   renderRestaurants: function() {
 
-  	return this.state.savedRestaurants.map(function(restaurant, index){
-
-		return (
+    return this.state.savedRestaurants.map(function(restaurant, index){
+    return (
         <div key={index}>
           <li className="list-group-item">
             <h3>
@@ -87,9 +99,9 @@ componentDidMount: function() {
       );
     }.bind(this));
 
-  	},
+    },
 
-  	// A helper method for rendering a container and all of our restaurants inside
+    // A helper method for rendering a container and all of our restaurants inside
   
   renderContainer: function() {
     return (
@@ -115,17 +127,17 @@ componentDidMount: function() {
     );
   },
   // Our render method. Utilizing a few helper methods to keep this logic clean
-  render: function() {
-    // If we have no restaurant, we will return this.renderEmpty() which in turn returns some HTML
-    if (!this.state.savedrestaurant) {
-      return this.renderEmpty();
-    }
-    // If we have restaurant, return this.renderContainer() which in turn returns all saves restaurant
-    return this.renderContainer();
+  render: function() {  return(
+  <div className="resultsPanel panel">
+        <div className="resultsPanelHeader panel-heading">
+          <h3 className="resultsText panel-title text-center">Results</h3>
+        </div>
+        <div className="resultsPanelOutline panel-body">
+            {this.renderRestaurants()}
+        </div>
+      </div>
+    )
   }
-
-
-//end of create class metho
 });
 
 // Export the module back to the route
