@@ -36,7 +36,6 @@ body {
 
 }
 
-
 .restaurantNameHeader {
 	font-size: 20px;
 	color:black;
@@ -196,14 +195,15 @@ clear:both;
 	color: #c1262e;
 	width:550px;
 	border-radius: 0px;
-	height:150px;
+	height:145px;
 	overflow:scroll;
 	border-width: 5px; 
 	border-style: solid; 
 
+
 }
 .savedItems{
-	height:85px;
+	height:100px;
 }
 
 
