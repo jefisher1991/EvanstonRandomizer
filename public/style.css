@@ -166,11 +166,64 @@ clear:both;
 }
 
 .resultsPanelOutline > div {
-	min-height: 180px;
+	min-height: 70px;
+	margin-bottom: 3px; 
 }
 
 #restaurant-address {
 	font-size: 12px;
 	color: #000;
 	font-family: Verdana;
+}
+
+.savedText{
+	font-family: 'Rye', cursive;
+	font-size: 23px;
+	color: #c1262e;
+	background-color: black;
+	padding:5px;
+	padding-left:0px;
+	padding-right:0px;
+	margin-bottom:7px;
+	width:550px;
+}
+
+.savedPanel{
+	color: #c1262e;
+	font-family: 'Rye', cursive;
+	font-size: 23px;
+	background-color: black;
+	color: #c1262e;
+	width:550px;
+	border-radius: 0px;
+	height:150px;
+	overflow:scroll;
+	border-width: 5px; 
+	border-style: solid; 
+
+}
+.savedItems{
+	height:85px;
+}
+
+
+.deleteButton:active:focus {
+  color: white;
+  background-color: black;
+  border-color: #494F57;
+}
+
+.deleteButton:hover{
+	background-color: #c1262e;
+	color:black;
+}
+
+.deleteButton:visited{
+	background-color: black;
+	color: #c1262e;
+}
+
+.deleteButton:focus{
+	background-color: black;
+	color: #c1262e;
 }

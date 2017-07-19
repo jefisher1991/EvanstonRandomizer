@@ -34,21 +34,20 @@ var Main = React.createClass({
 
 <div className="allItems col-12">
 
-<h3 className="title panel-title text-center">Restaurant Roulette</h3>
+			<h3 className="title panel-title text-center">Restaurant Roulette</h3>
 	      
 			<Form onResultChange={this.onResultChange} />
 			<Results results={this.state.results} />
-
+			
+			
 			 <div>
+ 	<div className="savedText">
+			 <h3 className="savedText text-center">Saved Restaurants</h3>
+			 </div>
 			<Saved saved={this.state.savedRestaurants}/>
-			// saved to render here!!!!!
-		</div>
-			 
-
-   
+			</div>
+	</div>
 </div>
-			 
-  </div>
 
 		);
 	}

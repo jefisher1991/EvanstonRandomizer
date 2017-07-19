@@ -81,23 +81,20 @@ componentDidMount: function() {
     return this.state.savedRestaurants.map(function(restaurant, index){
     return (
         <div key={index}>
-          <li className="list-group-item">
-            <h3>
+          <li className="savedItems list-group-item">
+            
               <span>
                 <em>{restaurant.restaurantName}</em>
               </span>
+
               <br />
 
               <div id="restaurant-address">
               {restaurant.location}
               </div>
-              <span className="btn-group pull-right">
-                <a href={restaurant.formatted_address} rel="noopener noreferrer" target="_blank">
-                  <button className="btn btn-default ">View Restaurant</button>
-                </a>
-                 <button className="btn btn-primary" onClick={() => this.handleClick(restaurant)}>Delete</button>
-              </span>
-            </h3>
+               
+              <button className="deleteButton pull-right btn btn-primary" onClick={() => this.handleClick(restaurant)}>X</button>
+             
            </li>
         </div>
       );
@@ -114,10 +111,7 @@ componentDidMount: function() {
           <div className="col-lg-12">
             <div className="panel panel-primary">
               <div className="panel-heading">
-                <h1 className="panel-title">
-                  <strong>
-                    <i className="fa fa-download" aria-hidden="true"></i> Saved Restaurant</strong>
-                </h1>
+                
               </div>
               <div className="panel-body">
                 <ul className="list-group">
@@ -132,9 +126,9 @@ componentDidMount: function() {
   },
   // Our render method. Utilizing a few helper methods to keep this logic clean
   render: function() {  return(
-  <div className="resultsPanel panel">
+  <div className="savedPanel panel">
         <div className="resultsPanelHeader panel-heading">
-          <h3 className="resultsText panel-title text-center">Saved Restaurants</h3>
+          
         </div>
         <div className="resultsPanelOutline panel-body">
             {this.renderRestaurants()}
