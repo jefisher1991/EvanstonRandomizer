@@ -43,19 +43,31 @@ var helpers = {
         return response.data._id;
       });
 },
-  	deleteSaved: function(name, formatted_address) {
+  	// deleteSaved: function(name, formatted_address) {
+    // 	return axios.delete("/api/saved", {
+    //   		params: {
+    //     		"restaurantName": name,
+    //     		"location": formatted_address,
+    //   		}
+    // 	})
+    // 	.then(function(results) {
+    //   		console.log("axios results", results);
+    //   		return results;
+    // 	});
+    //
+    //
+  	// },
+
+  	deleteSaved: function(restaurant) {
     	return axios.delete("/api/saved", {
       		params: {
-        		"restaurantName": name,
-        		"location": formatted_address,
+            id: restaurant._id
       		}
     	})
     	.then(function(results) {
       		console.log("axios results", results);
       		return results;
     	});
-
-
   	}
 
 

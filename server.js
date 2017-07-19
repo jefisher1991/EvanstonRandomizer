@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var cors = require('cors');
-// var methodoverride = require("method-override"); 
+// var methodoverride = require("method-override");
 
 
 var restaurant = require('./models/restaurant.js');
@@ -27,7 +27,7 @@ app.use(express.static('./public'));
 
 mongoose.connect('mongodb://localhost/restaurants');
 
-var test = require('./models/restaurant.js'); 
+var test = require('./models/restaurant.js');
 
 var db = mongoose.connection;
 
@@ -46,7 +46,7 @@ app.get('/', function(req, res){
 })
 
 app.post('/submit', function(req, res){
-  var content = test(req.body); 
+  var content = test(req.body);
     content.save(function(error, doc) {
     // Send any errors to the browser
     if (error) {
@@ -80,11 +80,8 @@ app.get('/api/saved', function(req, res) {
 
 app.post('/api/saved', function(req, res) {
     var newRestaurant = new restaurant (req.body);
-
-  
     newRestaurant.save(function(err, doc) {
       if (err) {
-
         console.log(err);
       }
 
@@ -97,18 +94,11 @@ app.post('/api/saved', function(req, res) {
   });
 
 app.delete('/api/saved', function(req,res){
-
-  console.log("#################################")
-console.log(res); 
-  db.collection("restaurants").deleteOne({location: location}, function(err, res) {
-    if (err) throw err;
-    console.log("successfully removed!");
+  var restaurantID = req.query.id;
+  restaurant.findByIdAndRemove(restaurantID, function(err, rest) {
+    console.log("deleted yeah!")
   })
 })
-
-
-
-
 
 app.listen(PORT, function() {
   console.log("App listening on PORT 👉 " + PORT);

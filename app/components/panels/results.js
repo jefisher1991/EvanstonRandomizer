@@ -14,12 +14,12 @@ var Results = React.createClass({
     }
   },
 
-  
+
   // clickToSave: function(result){
   //   this.props.saveArticle(result.headline.main, result.pub_date, result.web_url);
   // },
 
-//index is the postiion of the array that you are iterating through 
+//index is the postiion of the array that you are iterating through
 
   renderRestaurants: function() {
     return this.props.results.map(function(restaurant, index) {
@@ -30,18 +30,18 @@ var Results = React.createClass({
         <div key={0}>
           <li className="list-group-item">
               <ul>
-                <span className="restaurantNameHeader">Name: 
+                <span className="restaurantNameHeader">Name:
                 <p className="restaurantName"> {restaurant.name}</p>
                 </span>
 
                 <span className="restaurantHeader">Address:
                 <p className="restaurantDetails">{restaurant.formatted_address}</p>
                 </span>
-                
+
                   <span className="restaurantHeader">Rating:
                   <p className="restaurantDetails">{restaurant.rating}</p>
                   </span>
-               
+
                 <span className="restaurantHeader">Price Level:
                  <p className="restaurantDetails">{restaurant.price_level}</p>
                  </span>
@@ -50,9 +50,9 @@ var Results = React.createClass({
                 <a href={restaurant.formatted_address} rel="noopener noreferrer" target="_blank"> </a>
                 <button className="saveButton btn-default" onClick={() => this.handleClick(restaurant)}>Save Restaurant to Favorites</button>
                 </span>
-                 
+
               </ul>
-           
+
           </li>
 
         </div>
@@ -88,4 +88,3 @@ var Results = React.createClass({
 });
 
 module.exports = Results;
-

@@ -1,18 +1,18 @@
 body {
 	background-image: url('./RouletteCropped.jpg');
-	background-size: 100%; 
-	background-repeat: no-repeat; 
+	background-size: 100%;
+	background-repeat: no-repeat;
 	margin-left:15px;
 }
 
 .title{
 	font-family: 'Rye', cursive;
-	font-size: 35px; 
+	font-size: 35px;
 	border-color: white;
-	border-radius: 3px; 
-	background-color: black; 
+	border-radius: 3px;
+	background-color: black;
 	color: #c1262e;
-	width:550px; 
+	width:550px;
 	margin-top: 30px;
 	padding:15px;
 	margin-bottom:20px;
@@ -21,16 +21,16 @@ body {
 .resultsPanel{
 	color: #c1262e;
 	font-family: 'Rye', cursive;
-	font-size: 23px; 
-	background-color: black; 
+	font-size: 23px;
+	background-color: black;
 	color: #c1262e;
 	width:550px;
-	border-radius: 0px; 
-	
+	border-radius: 0px;
+
 }
 .resultsText{
 	font-family: 'Rye', cursive;
-	font-size: 23px; 
+	font-size: 23px;
 	color: #c1262e;
 
 
@@ -38,95 +38,95 @@ body {
 
 
 .restaurantNameHeader {
-	font-size: 20px; 
+	font-size: 20px;
 	color:black;
 }
 
 .restaurantName {
-	font-size: 16px; 
+	font-size: 16px;
 	color:black;
 }
 
 .restaurantHeader {
-	font-size: 18px; 
+	font-size: 18px;
 	color:black;
 }
 
 .restaurantDetails{
-	font-size: 14px; 
+	font-size: 14px;
 	color:black;
 }
 
 
 .spinTheWheel{
 	font-family: 'Rye', cursive;
-	font-size: 23px; 
-	background-color: black; 
+	font-size: 23px;
+	background-color: black;
 	color: #c1262e;
-	width:550px; 
-	border-radius: 0px; 
+	width:550px;
+	border-radius: 0px;
 	padding-bottom: 10px;
 	margin-bottom: 10px;
 }
 
 .spinTheWheel:active:focus {
-  color: white; 
-  background-color: black; 
+  color: white;
+  background-color: black;
   border-color: #494F57;
 }
 
 .spinTheWheel:hover{
-	background-color: #c1262e; 
+	background-color: #c1262e;
 	color:black;
 }
 
 .spinTheWheel:visited{
-	background-color: black; 
+	background-color: black;
 	color: #c1262e;
 }
 
 .spinTheWheel:focus{
-	background-color: black; 
+	background-color: black;
 	color: #c1262e;
 }
 
 
 .saveButton{
-	
-	font-size: 14px; 
-	background-color: black; 
+
+	font-size: 14px;
+	background-color: black;
 	color: #c1262e;
-	border-radius: 3px; 
+	border-radius: 3px;
 	border-color: white;
 	border-style: none;
 
 }
 
 .saveButton:active:focus {
-  color: white; 
-  background-color: black; 
+  color: white;
+  background-color: black;
   border-color: #494F57;
 }
 
 .saveButton:hover{
-	background-color: #c1262e; 
+	background-color: #c1262e;
 	color:black;
 }
 
 .saveButton:visited{
-	background-color: black; 
+	background-color: black;
 	color: #c1262e;
 }
 
 .saveButton:focus{
-	background-color: black; 
+	background-color: black;
 	color: #c1262e;
 }
 
 .btn-primary{
 	border-color: white;
-	border-radius: 3px; 
-	background-color: black; 
+	border-radius: 3px;
+	background-color: black;
 	color: #c1262e;
 
 }
@@ -134,9 +134,9 @@ body {
 
 
 .allItems{
-	margin-left:600px; 
+	margin-left:600px;
 	width:600px;
-	padding:15px; 
+	padding:15px;
 	clear:both;
 
 
@@ -152,11 +152,11 @@ clear:both;
 
 .savedRestaurantsText{
 	font-family: 'Rye', cursive;
-	text-align: center; 
-	font-size: 18px; 
+	text-align: center;
+	font-size: 18px;
 	border-color: white;
-	border-radius: 3px; 
-	background-color: black; 
+	border-radius: 3px;
+	background-color: black;
 	color: #c1262e;
 	width:550px;
 	padding:15px;
@@ -166,11 +166,11 @@ clear:both;
 }
 
 .resultsPanelOutline > div {
-	min-height: 400px;
+	min-height: 180px;
 }
 
 #restaurant-address {
-	font-size: 12px; 
+	font-size: 12px;
 	color: #000;
 	font-family: Verdana;
 }

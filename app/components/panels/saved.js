@@ -1,5 +1,6 @@
 // Include React as a dependency
 var React = require("react");
+var axios = require("axios");
 
 // Include the data file (for the saved recall)
 var helpers = require("../data.js");
@@ -34,12 +35,10 @@ componentDidMount: function() {
 
 // This code handles the deleting saved restaurants from our database
   handleClick: function(item) {
-    // console.log("CLICKED");
     // console.log(item);
 
     // Delete the list!
-    helpers.deleteSaved(item.name, item.formatted_address).then(function() {
-
+    helpers.deleteSaved(item).then(function() {
       // Get the revised list!
       helpers.getSaved().then(function(restaurantData) {
         this.setState({ savedRestaurants: restaurantData.data });
@@ -48,6 +47,17 @@ componentDidMount: function() {
 
     }.bind(this));
   },
+  // removeRestaurant: function(rest) {
+  //   return axios.delete("/api/saved", {
+  //       params: {
+  //         id: rest._id
+  //       }
+  //   })
+  //   .then(function(results) {
+  //       console.log("axios results", results);
+  //       return results;
+  //   });
+  // },
   // A helper method for rendering the HTML when we have no saved restaurants
   renderEmpty: function() {
     return (
@@ -65,7 +75,7 @@ componentDidMount: function() {
 
  //A helper method for mapping through our restaurants and outputting some HTML
 
-   //this.state always refers to your state and above the state of saved restaurants 
+   //this.state always refers to your state and above the state of saved restaurants
   renderRestaurants: function() {
 
     return this.state.savedRestaurants.map(function(restaurant, index){
@@ -85,7 +95,6 @@ componentDidMount: function() {
                 <a href={restaurant.formatted_address} rel="noopener noreferrer" target="_blank">
                   <button className="btn btn-default ">View Restaurant</button>
                 </a>
-                
                  <button className="btn btn-primary" onClick={() => this.handleClick(restaurant)}>Delete</button>
               </span>
             </h3>
@@ -97,7 +106,7 @@ componentDidMount: function() {
     },
 
     // A helper method for rendering a container and all of our restaurants inside
-  
+
   renderContainer: function() {
     return (
       <div className="main-container">
