@@ -7,18 +7,6 @@ var helpers = require("../data.js");
 // Create the Main component
 var Saved = React.createClass({
 
-render: function() {
-    return (
-      <div className="panel panel-default">
-        <div className="panel-heading">
-          <h3 className="panel-title">Adder</h3>
-        </div>
-        <div className="panel-body text-center">
-          <h1>{this.props.saved}</h1>
-        </div>
-      </div>
-    );
-  }, 
   getInitialState: function() {
     return { savedRestaurants: [] };
 
@@ -40,6 +28,8 @@ componentDidMount: function() {
       console.log("saved results", restaurantData.data);
     }.bind(this));
   },
+
+
 
 
 // This code handles the deleting saved restaurants from our database
@@ -84,8 +74,13 @@ componentDidMount: function() {
           <li className="list-group-item">
             <h3>
               <span>
-                <em>{restaurant.name}</em>
+                <em>{restaurant.restaurantName}</em>
               </span>
+              <br />
+
+              <div id="restaurant-address">
+              {restaurant.location}
+              </div>
               <span className="btn-group pull-right">
                 <a href={restaurant.formatted_address} rel="noopener noreferrer" target="_blank">
                   <button className="btn btn-default ">View Restaurant</button>
@@ -130,7 +125,7 @@ componentDidMount: function() {
   render: function() {  return(
   <div className="resultsPanel panel">
         <div className="resultsPanelHeader panel-heading">
-          <h3 className="resultsText panel-title text-center">Results</h3>
+          <h3 className="resultsText panel-title text-center">Saved Restaurants</h3>
         </div>
         <div className="resultsPanelOutline panel-body">
             {this.renderRestaurants()}

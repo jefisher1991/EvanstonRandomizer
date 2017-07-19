@@ -3,7 +3,7 @@ var React = require('react');
 
 var Form = require('./panels/form');
 var Results = require('./panels/results');
-var saved = require('./panels/saved');
+var Saved = require('./panels/saved');
 
 var Link = require("react-router").Link;
 
@@ -40,7 +40,7 @@ var Main = React.createClass({
 			<Results results={this.state.results} />
 
 			 <div>
-			<saved saved={this.state.saved}/>
+			<Saved saved={this.state.savedRestaurants}/>
 			// saved to render here!!!!!
 		</div>
 			 

@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var cors = require('cors');
+// var methodoverride = require("method-override"); 
 
 
 var restaurant = require('./models/restaurant.js');
@@ -75,6 +76,8 @@ app.get('/api/saved', function(req, res) {
 
 
 
+
+
 app.post('/api/saved', function(req, res) {
     var newRestaurant = new restaurant (req.body);
 
@@ -92,6 +95,18 @@ app.post('/api/saved', function(req, res) {
     });
 
   });
+
+app.delete('/api/saved', function(req,res){
+
+  console.log("#################################")
+console.log(res); 
+  db.collection("restaurants").deleteOne({location: location}, function(err, res) {
+    if (err) throw err;
+    console.log("successfully removed!");
+  })
+})
+
+
 
 
 

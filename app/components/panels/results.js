@@ -89,29 +89,3 @@ var Results = React.createClass({
 
 module.exports = Results;
 
-
-
-
-
-
-
-
-
-
-//   // Here we render the function
-// //   render: function(){
-// //     return(
-
-// //       <div className="panel panel-success">
-// //         <div className="panel-heading">
-// //           <h3 className="panel-title text-center">Results</h3>
-// //         </div>
-// //         <div className="panel-body">
-// //             {JSON.stringify(this.props.results)}
-// //         </div>
-// //       </div>
-// //     )
-// //   }
-// // });
-
-// // Export the component back for use in other files
